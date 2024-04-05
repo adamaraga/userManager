@@ -1,0 +1,17 @@
+#Database
+POSTGRES_SQL_USERNAME: ${db_username}
+POSTGRES_SQL_PASSWORD: ${db_password}
+POSTGRES_SQL_HOST: localhost
+POSTGRES_SQL_PORT: 5432
+POSTGRES_SQL_DB: umdb
+
+#Server
+SERVER_PORT: 9000
+ACTIVE_PROFILE: dev
+
+#Email Config
+EMAIL_HOST: smtp.gmail.com
+EMAIL_PORT: 465
+EMAIL_ID: ${email_id}
+EMAIL_PASSWORD: ${email_password}
+VERIFY_EMAIL_HOST: http://localhost:${SERVER_PORT}
