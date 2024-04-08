@@ -17,7 +17,8 @@ import java.util.function.Function;
 public class JWTUtils {
 
     private SecretKey Key;
-    private  static  final long EXPIRATION_TIME = 86400000; //24hours or 86400000 milisecs
+    private  static  final long EXPIRATION_TIME = 600000; //10mins or 600000 milisecs
+    private  static  final long EXPIRATION_TIME_REFRESH = 900000; //15mins or 900000 milisecs
     public JWTUtils(){
         String secreteString = System.getenv("jwt_key");
         byte[] keyBytes = Base64.getDecoder().decode(secreteString.getBytes(StandardCharsets.UTF_8));
@@ -37,7 +38,7 @@ public class JWTUtils {
                 .claims(claims)
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME_REFRESH))
                 .signWith(Key)
                 .compact();
     }

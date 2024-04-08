@@ -110,14 +110,15 @@ public class UserServiceImpl implements UserService {
 
         if (!jwtUtils.isTokenValid(token, user)) {throw new RuntimeException("Invalid token");}
 
-        var jwt= jwtUtils.generateToken(user);
+        var jwt = jwtUtils.generateToken(user);
+        var refreshToken = jwtUtils.generateRefreshToken(new HashMap<>(), user);
 
         return HttpResponse.builder()
                     .timeStamp(LocalDateTime.now().toString())
                     .data(Map.of("Success", Boolean.TRUE))
                     .message("Successfully Refreshed Token")
                     .token(jwt)
-                    .refreshToken(token)
+                    .refreshToken(refreshToken)
                     .expirationTime("24hrs")
                     .status(HttpStatus.OK)
                     .statusCode(HttpStatus.OK.value())
